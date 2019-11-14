@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshop
+  labels:
+    app: workshop
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: workshop
+    tier: backend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workshop
+  labels:
+    app: workshop
+spec:
+  selector:
+    matchLabels:
+      app: workshop
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: workshop
+        tier: backend
+    spec:
+      containers:
+      - image: gcr.io/cli-workshop/workshop:0.1.0
+        name: workshop
+        ports:
+        - containerPort: 80
+          name: workshop
