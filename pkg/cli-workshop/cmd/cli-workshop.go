@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"time"
-	"http"
 
 	"github.com/spf13/cobra"
+
 	"github.com/tehcyx/go-cli-workshop/pkg/cli-workshop/cmd/calc"
 	"github.com/tehcyx/go-cli-workshop/pkg/cli-workshop/core"
 )
